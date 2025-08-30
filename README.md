@@ -12,16 +12,12 @@ A lightweight, modular LLM agent framework built using LangGraph, powered by Gro
 
 ## Architecture Flow
 
-```
-    User Input
-        ↓
-   Planner Node
-        ↓
-  Executor Node
-        ↓
- Summarizer Node
-        ↓
-   Final Output
+```mermaid
+graph TD
+    A[User Input] --> B[Planner Node]
+    B --> C[Executor Node]
+    C --> D[Summarizer Node]
+    D --> E[Final Output]
 ```
 
 ### LangGraph Flow Pattern

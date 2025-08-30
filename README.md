@@ -1,108 +1,91 @@
-# 🧠 LLM Agent Pipeline with LangGraph & Groq LLaMA3
+# LLM Agent Pipeline with LangGraph & Groq LLaMA3
 
-A lightweight, modular **LLM agent framework** built using [LangGraph](https://docs.langgraph.dev), powered by **Groq's ultra-fast LLaMA3-8B** model. This project demonstrates how to create a goal-oriented agent that breaks down a user prompt into sub-tasks, executes each one using LLM reasoning, and summarizes the outcome — all within a structured graph-based flow.
+A lightweight, modular LLM agent framework built using LangGraph, powered by Groq's ultra-fast LLaMA3-8B model. Demonstrates goal-oriented agents that break down user prompts into sub-tasks, execute them using LLM reasoning, and provide structured summaries through graph-based flow.
 
----
+## Features
 
-## 🚀 Features
+- Modular graph architecture using LangGraph
+- Ultra-fast LLM responses with Groq's llama3-8b-8192
+- Dynamic planning, execution, and summarization workflow
+- Clean output at each step for inspection and reuse
+- Extensible framework for tools, memory, and custom nodes
 
-* 🧩 **Modular Graph Architecture** using `LangGraph`
-* ⚡ **Super-fast LLM responses** with Groq’s `llama3-8b-8192`
-* 📝 **Dynamic Planning → Execution → Summary**
-* 🧪 Clean output at each step for inspection or reuse
-* 🛠️ Easily extensible: add tools, memory, or new nodes
+## Architecture Flow
 
----
-
-## 🔄 Flow Overview
-
-```mermaid
-graph TD
-    A[User Input] --> B[Planner Node]
-    B --> C[Executor Node]
-    C --> D[Summarizer Node]
-    D --> E[Final Output]
+```
+    User Input
+        ↓
+   Planner Node
+        ↓
+  Executor Node
+        ↓
+ Summarizer Node
+        ↓
+   Final Output
 ```
 
----
+### LangGraph Flow Pattern
 
-## 📦 Tech Stack
+The project implements a **StateGraph** pattern with three main nodes:
 
-| Tool          | Purpose                                 |
-| ------------- | --------------------------------------- |
+- **Planner Node**: Analyzes user input and breaks down complex tasks into actionable sub-tasks
+- **Executor Node**: Processes each sub-task using LLM reasoning and generates intermediate results
+- **Summarizer Node**: Consolidates all outputs into a coherent final response
+
+Each node maintains state context and can pass information to subsequent nodes, enabling complex multi-step reasoning workflows.
+
+## Tech Stack
+
+| Component | Purpose |
+|-----------|---------|
 | **LangGraph** | State-based flow control for LLM agents |
-| **LangChain** | LLM interface abstraction               |
-| **Groq API**  | High-speed inference with LLaMA3        |
-| **Python**    | Core logic and execution                |
-| **dotenv**    | Secure API key handling                 |
+| **LangChain** | LLM interface abstraction |
+| **Groq API** | High-speed inference with LLaMA3 |
+| **Python** | Core logic and execution |
+| **dotenv** | Secure API key management |
 
----
+## Quick Start
 
-## 🛠️ Setup
-
-1. **Clone the repo**
-
+### Setup
 ```bash
-git clone https://github.com/your-username/langgraph-agent-pipeline.git
-cd langgraph-agent-pipeline
-```
-
-2. **Install dependencies**
-
-```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-3. **Set your API key**
+# Configure environment
+echo "GROQ_API_KEY=your_groq_api_key_here" > .env
 
-Create a `.env` file:
-
-```env
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-4. **Run the app**
-
-```bash
+# Run application
 python main.py
 ```
 
----
+## Example Usage
 
-## 📌 Example Use
-
-**Input:**
-
-> "Plan and write a blog post on benefits of AI in education"
+**Input:** "Plan and write a blog post on benefits of AI in education"
 
 **Planner Output:**
+- Research recent uses of AI in education
+- Draft key benefits with examples
+- Conclude with future outlook
 
-* Research recent uses of AI in education
-* Draft key benefits with examples
-* Conclude with future outlook
+**Final Output:** Comprehensive blog-ready content connecting all planned points
 
-**Final Output:**
-A concise blog-ready explanation connecting all the above points.
+## Why LangGraph?
 
----
+LangGraph enables building stateful, multi-step agents that mirror human reasoning processes. This project provides a practical implementation of LLM-powered pipelines with clear separation of planning, execution, and summarization phases.
 
-## 🤔 Why LangGraph?
+## Extension Ideas
 
-LangGraph makes it easy to build **stateful, multi-step agents** that mimic how humans reason through tasks. This project helps you get started with a real use case and a simple but powerful LLM-powered pipeline.
+- Integrate web search capabilities (SerpAPI)
+- Add persistent memory for long-term task tracking
+- Convert to CLI application or Streamlit dashboard
+- Implement custom tool integrations
 
----
+## Requirements
 
-## 🧩 Ideas for Extensions
+- Python 3.8+
+- Groq API key
+- LangGraph and LangChain dependencies
 
-* Integrate web search or tools (e.g., SerpAPI)
-* Add memory for long-term tracking
-* Convert into a CLI app or Streamlit dashboard
-
----
-
-## 📄 License
+## License
 
 MIT License
-
----
-

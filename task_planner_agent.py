@@ -52,7 +52,6 @@ def summarizer_node(state: AgentState) -> AgentState:
     return {"summary": summary}
 
 # --- LangGraph construction ---
-
 graph = StateGraph(AgentState)
 graph.add_node("planner", planner_node)
 graph.add_node("executor", executor_node)
@@ -61,17 +60,15 @@ graph.add_node("summarizer", summarizer_node)
 graph.set_entry_point("planner")
 graph.add_edge("planner", "executor")
 graph.add_edge("executor", "summarizer")
-graph.set_finish_point("summarizer")
+graph.add_edge("summarizer", END)  # Fixed: use END instead of set_finish_point
 
 app = graph.compile()
 
 # --- Run interaction ---
-
 if __name__ == "__main__":
-    print("🧠 LangGraph Agent System")
+    print("LangGraph Agent System")
     user_goal = input("Enter your goal: ")
     initial_state = {"goal": user_goal}
     result = app.invoke(initial_state)
-
-    print("\n✅ Final Summary:\n")
+    print("\nFinal Summary:")
     print(result["summary"])

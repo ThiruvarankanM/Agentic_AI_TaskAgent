@@ -2,6 +2,11 @@
 
 A lightweight, modular LLM agent framework built using LangGraph, powered by Groq's ultra-fast LLaMA3-8B model. Demonstrates goal-oriented agents that break down user prompts into sub-tasks, execute them using LLM reasoning, and provide structured summaries through graph-based flow.
 
+# LLM Agent Pipeline with LangGraph & Groq LLaMA3
+
+A lightweight, modular LLM agent framework built using LangGraph, powered by Groq's ultra-fast LLaMA3-8B model. Demonstrates goal-oriented agents that break down user prompts into sub-tasks, execute them using LLM reasoning, and provide structured summaries through graph-based flow.
+
+
 ## Features
 
 - Modular graph architecture using LangGraph
